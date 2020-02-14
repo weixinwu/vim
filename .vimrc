@@ -66,8 +66,7 @@ set hlsearch
 set incsearch
 syntax enable
 :map <space>s :update<CR>
+:imap jj <Esc>
 let g:ag_working_path_mode="r"
-
-
 
 
