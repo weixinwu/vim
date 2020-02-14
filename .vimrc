@@ -1,5 +1,5 @@
-
 call plug#begin('~/.vim/plugged')
+
 
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -11,7 +11,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'wadackel/vim-dogrun'
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
-nnoremap <c-p> :FZF<cr>
+Plug 'jiangmiao/auto-pairs'
+
 call plug#end()
 
 
@@ -20,6 +21,32 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+
+set number
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set clipboard=unnamed
+colorscheme dogrun
+:nnoremap <Leader>w <C-w>
+:nnoremap <C-S> :update<cr>
+nnoremap <c-p> :FZF<cr>
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+syntax enable
+:map <space>s :update<CR>
+:imap jj <Esc>
+let mapleader=" "
+let g:ag_working_path_mode="r"
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 
 " coc
 " " Use <c-space> to trigger completion.
@@ -34,6 +61,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = 'split'
 "
@@ -49,25 +79,3 @@ function! s:show_documentation()
 endfunction
 
 
-set number
-set smartindent
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set clipboard=unnamed
-colorscheme dogrun
-:nnoremap <Leader>w <C-w>
-:nnoremap <C-S> :update<cr>
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-syntax enable
-:map <space>s :update<CR>
-:imap jj <Esc>
-let g:ag_working_path_mode="r"
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
