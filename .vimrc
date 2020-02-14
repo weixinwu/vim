@@ -68,5 +68,6 @@ syntax enable
 :map <space>s :update<CR>
 :imap jj <Esc>
 let g:ag_working_path_mode="r"
-
-
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
