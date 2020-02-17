@@ -35,6 +35,7 @@ set shiftwidth=2
 set expandtab
 set clipboard=unnamed
 colorscheme gruvbox
+set background=dark
 :nnoremap <Leader>w <C-w>
 :nnoremap <C-S> :update<cr>
 nnoremap <c-p> :FZF<cr>
@@ -84,4 +85,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-
+if (&term =~ '^xterm' && &t_Co == 256)
+  set t_ut= | set ttyscroll=1
+endif
