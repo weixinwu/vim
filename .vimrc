@@ -6,12 +6,15 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-emmet','coc-tslint','coc-prettier']
+let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-emmet','coc-tslint']
 Plug 'leafgarland/typescript-vim'
 Plug 'wadackel/vim-dogrun'
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+Plug 'chrisbra/vim-commentary'
 
 Plug 'morhetz/gruvbox'
 
