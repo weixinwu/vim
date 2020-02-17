@@ -13,6 +13,9 @@ Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'morhetz/gruvbox'
+
+
 call plug#end()
 
 
@@ -28,7 +31,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set clipboard=unnamed
-colorscheme dogrun
+colorscheme gruvbox
 :nnoremap <Leader>w <C-w>
 :nnoremap <C-S> :update<cr>
 nnoremap <c-p> :FZF<cr>
