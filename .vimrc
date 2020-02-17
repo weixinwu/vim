@@ -23,6 +23,12 @@ call plug#end()
 
 
 " use <tab> for trigger completion and navigate to the next complete item
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -50,9 +56,9 @@ syntax enable
 :imap jj <Esc>
 let mapleader=" "
 let g:ag_working_path_mode="r"
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" vmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 
 " coc
