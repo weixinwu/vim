@@ -1,3 +1,7 @@
+
+
+
+
 call plug#begin('~/.vim/plugged')
 
 
@@ -13,11 +17,11 @@ Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'alvan/vim-closetag'
+
 Plug 'chrisbra/vim-commentary'
 
 Plug 'morhetz/gruvbox'
-
+Plug 'alvan/vim-closetag'
 
 call plug#end()
 
@@ -28,8 +32,14 @@ call plug#end()
 " \ <SID>check_back_space() ? "\<TAB>" :
 " \ coc#refresh()
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-inoremap <expr> <TAB> ((pumvisible())?("\<C-y>"):("\<cr>"))
+
+
+
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+
 
 
 
@@ -60,9 +70,6 @@ syntax enable
 :imap jj <Esc>
 let mapleader=" "
 let g:ag_working_path_mode="r"
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" vmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
 
 
 " coc
@@ -99,8 +106,7 @@ if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif
 
-
-
-silent
+"silent 
 set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb="
+autocmd GUIEnter * set visualbell t_vb=
+
