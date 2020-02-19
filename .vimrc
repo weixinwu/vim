@@ -13,7 +13,7 @@ Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'alvan/vim-closetag'
+
 Plug 'chrisbra/vim-commentary'
 
 Plug 'morhetz/gruvbox'
@@ -23,15 +23,11 @@ call plug#end()
 
 
 " use <tab> for trigger completion and navigate to the next complete item
-" inoremap <silent><expr> <TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ <SID>check_back_space() ? "\<TAB>" :
-" \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-inoremap <expr> <TAB> ((pumvisible())?("\<C-y>"):("\<cr>"))
-
-
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -98,9 +94,3 @@ endfunction
 if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif
-
-
-
-silent
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb="
