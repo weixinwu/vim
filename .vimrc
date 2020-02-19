@@ -13,7 +13,7 @@ Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
+Plug 'alvan/vim-closetag'
 Plug 'chrisbra/vim-commentary'
 
 Plug 'morhetz/gruvbox'
@@ -94,3 +94,7 @@ endfunction
 if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif
+
+"slient
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=""
