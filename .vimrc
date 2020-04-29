@@ -6,7 +6,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-emmet','coc-tslint']
+let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-css','coc-emmet','coc-tslint']
 Plug 'leafgarland/typescript-vim'
 Plug 'wadackel/vim-dogrun'
 Plug 'mileszs/ack.vim'
@@ -15,12 +15,24 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'alvan/vim-closetag'
 Plug 'chrisbra/vim-commentary'
+Plug 'ayu-theme/ayu-vim'
+Plug 'preservim/nerdtree'
 
 Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+
+
 
 
 call plug#end()
 
+"colorscheme gruvbox
 
 " use <tab> for trigger completion and navigate to the next complete item
 " inoremap <silent><expr> <TAB>
@@ -29,6 +41,9 @@ call plug#end()
 " \ coc#refresh()
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+
+"neardtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<CR>"
 
@@ -43,8 +58,6 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set clipboard=unnamed
-colorscheme gruvbox
-set background=dark
 :nnoremap <Leader>w <C-w>
 :nnoremap <C-S> :update<cr>
 nnoremap <c-p> :FZF<cr>
@@ -95,9 +108,36 @@ function! s:show_documentation()
 endfunction
 
 if (&term =~ '^xterm' && &t_Co == 256)
-  set t_ut= | set ttyscroll=1
+  set t_ut= 
 endif
 
 "slient
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=""
+
+
+
+
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+set background=dark " for the dark version
+let ayucolor="dark"
+colorscheme ayu
